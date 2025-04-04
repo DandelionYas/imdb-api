@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 public class TitleService {
     private final TitleRepository titleRepository;
 
+    /**
+     * Returns all the titles in which both director and writer are the same person
+     * and he/she is still alive
+     */
     public Page<Title> findTitlesWithSameAndAliveCrew(Pageable pageable) {
         return titleRepository.findTitlesWithSameAndAliveCrew(pageable);
     }
