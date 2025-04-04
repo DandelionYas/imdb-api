@@ -12,10 +12,12 @@ public interface TitleRepository extends JpaRepository<Title, String> {
 
     @NativeQuery(
             value =
-                    "SELECT title.* FROM title INNER JOIN crew ON title.tconst = crew.tconst AND crew.directors = crew.writers " +
+                    "SELECT title.* FROM title " +
+                            "INNER JOIN crew ON title.tconst = crew.tconst AND crew.directors = crew.writers " +
                             "INNER JOIN person ON crew.directors like '%' + person.primaryName + '%' AND person.deathYear like '%\\N%' ",
             countQuery =
-                    "SELECT title.* FROM title INNER JOIN crew ON title.tconst = crew.tconst AND crew.directors = crew.writers " +
+                    "SELECT COUNT(title.*) FROM title " +
+                            "INNER JOIN crew ON title.tconst = crew.tconst AND crew.directors = crew.writers " +
                             "INNER JOIN person ON crew.directors like '%' + person.primaryName + '%' AND person.deathYear like '%\\N%' ")
     Page<Title> findTitlesWithSameAndAliveCrew(Pageable pageable);
 }
