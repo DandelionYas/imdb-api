@@ -1,6 +1,15 @@
 # RESTful APIs for IMDB dataset
 
 ## Import dataset into the application
+### Prerequisites
+Create a new folder named "datasets" in the root of the project and copy all .tsv files into it:
+```shell
+cd path/to/root
+mkdir datasets
+cp path/to/tsv-files/*.tsv path/to/root/datasets/
+```
+
+### Choosing best import approach
 Based on [Stackoverflow](https://stackoverflow.com/questions/72505609/how-to-import-huge-tsv-file-into-h2-in-memory-database-with-spring-boot) and [H2 DB Documentation](https://www.h2database.com/html/functions.html#csvread),
  we can use CSVREAD() to import the data first into a temporary table and then use the table in queries. Although CSVREAD() is mainly implemented for csv files, we can read tsv files by specifying *rowSeparator*:
 ```SQL
