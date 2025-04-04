@@ -1,6 +1,6 @@
 package com.imdb.api.controllers;
 
-import com.imdb.api.models.Title;
+import com.imdb.api.dtos.TitleDto;
 import com.imdb.api.services.TitleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,7 +25,7 @@ public class TitleController {
             @ApiResponse(responseCode = "200", description = "Title records found and returned"),
             @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping("/same-alive-crew")
-    public Page<Title> findTitlesWithSameAndAliveCrew(Pageable pageable) {
+    public Page<TitleDto> findTitlesWithSameAndAliveCrew(Pageable pageable) {
         return titleService.findTitlesWithSameAndAliveCrew(pageable);
     }
 }

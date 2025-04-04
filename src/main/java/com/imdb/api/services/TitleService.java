@@ -1,5 +1,7 @@
 package com.imdb.api.services;
 
+import com.imdb.api.dtos.TitleDto;
+import com.imdb.api.mappers.TitleMapper;
 import com.imdb.api.models.Title;
 import com.imdb.api.repositories.TitleRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +18,8 @@ public class TitleService {
      * Returns all the titles in which both director and writer are the same person
      * and he/she is still alive
      */
-    public Page<Title> findTitlesWithSameAndAliveCrew(Pageable pageable) {
-        return titleRepository.findTitlesWithSameAndAliveCrew(pageable);
+    public Page<TitleDto> findTitlesWithSameAndAliveCrew(Pageable pageable) {
+        Page<Title> entityPage = titleRepository.findTitlesWithSameAndAliveCrew(pageable);
+        return entityPage.map(TitleMapper.INSTANCE::entityToDto);
     }
 }
