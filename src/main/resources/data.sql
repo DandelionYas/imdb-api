@@ -2,13 +2,13 @@ CREATE SCHEMA IF NOT EXISTS imdb;
 SET SCHEMA imdb;
 
 -- Create Tables and Fetch data
-CREATE TABLE title_crew(
+CREATE TABLE crew(
     tconst    VARCHAR(15) PRIMARY KEY,
     directors VARCHAR(6000),
     writers VARCHAR(50000))
 AS SELECT * FROM CSVREAD('./datasets/title.crew.tsv',  null, 'fieldSeparator=' || CHAR (9));
 
-CREATE TABLE name_basics(
+CREATE TABLE person(
     nconst VARCHAR(15) PRIMARY KEY,
     primaryName VARCHAR(200),
     birthYear VARCHAR(20),
@@ -17,7 +17,7 @@ CREATE TABLE name_basics(
     knownForTitles VARCHAR(1000))
 AS SELECT * FROM CSVREAD('./datasets/name.basics.tsv',  null, 'fieldSeparator=' || CHAR (9));
 
-CREATE TABLE title_basics(
+CREATE TABLE title(
     tconst VARCHAR(15) PRIMARY KEY,
     titleType VARCHAR(25),
     primaryTitle VARCHAR(1000),
@@ -29,13 +29,13 @@ CREATE TABLE title_basics(
     genres VARCHAR(500))
 AS SELECT * FROM CSVREAD('./datasets/title.basics.tsv',  null, 'fieldSeparator=' || CHAR (9));
 
-CREATE TABLE title_ratings(
+CREATE TABLE rating(
     tconst VARCHAR(15) PRIMARY KEY,
     averageRating FLOAT,
     numVotes INT)
 AS SELECT * FROM CSVREAD('./datasets/title.ratings.tsv',  null, 'fieldSeparator=' || CHAR (9));
 
-CREATE TABLE title_principals(
+CREATE TABLE principal(
     tconst VARCHAR(15),
     ordering INT PRIMARY KEY,
     nconst VARCHAR(15),

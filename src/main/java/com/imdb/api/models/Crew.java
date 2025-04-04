@@ -8,9 +8,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "crew")
+@Table
 public class Crew {
-
     @Id
     @Column(name = "tconst", columnDefinition = "VARCHAR(15)")
     private String titleId;

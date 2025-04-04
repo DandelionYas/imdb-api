@@ -1,17 +1,16 @@
 package com.imdb.api.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "person")
+@Table
 public class Person {
     @Id
-    @Column(name = "nconst",columnDefinition = "VARCHAR(15)")
+    @Column(name = "nconst", columnDefinition = "VARCHAR(15)")
     private String id;
 
     @Column(columnDefinition = "VARCHAR(200)")
@@ -28,4 +27,7 @@ public class Person {
 
     @Column(columnDefinition = "VARCHAR(1000)")
     private String knownForTitles;
+
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    Set<Principal> principals;
 }
