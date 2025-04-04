@@ -24,3 +24,9 @@ I used fast import approach as mentioned in [H2 DB Documentation](https://h2data
 ```SQL
 CREATE TABLE(...) ... AS SELECT ... is faster than CREATE TABLE(...); INSERT INTO ... SELECT ...
 ```
+
+## API Documentation
+You can access OpenAPI documentation through the following link:
+```thymeleafurlexpressions
+http://localhost:8080/swagger-ui/index.html
+```
