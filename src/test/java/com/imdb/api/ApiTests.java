@@ -49,4 +49,22 @@ class ApiTests {
 		assertNotNull(response.getBody());
 	}
 
+	/**
+	 * Count how many HTTP requests you received in this application
+	 * since the last startup
+	 */
+	@Test
+	void testGettingCountOfReceivedHttpRequests() {
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("http")
+				.host("localhost")
+				.port(port)
+				.path("/api/administration/requests-count").build();
+
+		ResponseEntity<?> response = restTemplate.exchange(uri.toString(),
+				HttpMethod.GET, null, Long.class);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+	}
 }
