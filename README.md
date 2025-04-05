@@ -1,6 +1,30 @@
 # RESTful APIs for IMDB dataset
+This project's purpose is to use IMDB Dataset in order to develop RESTful APIs for required functionalities
 
-## Import dataset into the application
+## Done tasks
+
+This service's development progress is much further than the others:
+- ✅ Implement SQL Queries to import the IMDB dataset into the application
+- ✅ Implement API to return all the titles in which both director and writer are the same person and he/she is still alive
+- ✅ Implement API to get two actors and return all the titles in which both of them played at
+- ✅ Implement API to get a genre from the user and return best titles on each year for that genre based on number of votes and rating
+- ✅ Implement API to count how many HTTP requests you received in this application since the last startup
+- ✅ Open API Documentation
+- ✅ Rest Service Error handling
+- ✅ Write API integration tests using TDD approach
+- ✅ Use mapstruct as a clean way to map entities to response objects
+
+## ToDo list
+The remaining todo list for this service:
+- ⚠️ Add logs in all required levels
+- ⚠️ Integrate the last version of Spring security with Keycloak for authentication and method security (authorization)
+- ⚠️ Secure the API by self-signed SSL keys
+- ⚠️ Secure the credentials in application.properties by Jasypt maven plugin
+- ⚠️ Use Google Jib to build docker image
+- ⚠️ Implement All CRUD Operations in API and Add Dto validation
+
+
+## Getting started by importing dataset into the application
 ### Prerequisites
 Create a new folder named "datasets" in the root of the project and copy all .tsv files into it:
 ```shell
