@@ -22,4 +22,12 @@ public class TitleService {
         Page<Title> entityPage = titleRepository.findTitlesWithSameAndAliveCrew(pageable);
         return entityPage.map(TitleMapper.INSTANCE::entityToDto);
     }
+
+    /**
+     * Get two actors and return all the titles in which both of them played at
+     */
+    public Page<TitleDto> findTitlesInWhichTwoActorsPlayedAt(String actor1, String actor2 , Pageable pageable) {
+        Page<Title> entityPage = titleRepository.findTitlesInWhichTwoActorsPlayedAt(actor1, actor2, pageable);
+        return entityPage.map(TitleMapper.INSTANCE::entityToDto);
+    }
 }
