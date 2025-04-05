@@ -1,5 +1,6 @@
 package com.imdb.api.controllers;
 
+import com.imdb.api.dtos.BestTitleDto;
 import com.imdb.api.dtos.TitleDto;
 import com.imdb.api.services.TitleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,5 +43,16 @@ public class TitleController {
                                                              @RequestParam("actor-2") String actor2,
                                                              Pageable pageable) {
         return titleService.findTitlesInWhichTwoActorsPlayedAt(actor1, actor2, pageable);
+    }
+
+    @Operation(summary = "Get Best Titles On each year by genre",
+            description = "Receives a genre from the user and return best titles on each year " +
+                    "for that genre based on number of votes and rating")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Best titles found and returned"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")})
+    @GetMapping("/best-each-year")
+    public List<BestTitleDto> findBestTitlesOnEachYearByGenre(@RequestParam("genre") String genre) {
+        return titleService.findBestTitlesOnEachYearByGenre(genre);
     }
 }
