@@ -8,6 +8,11 @@ cd path/to/root
 mkdir datasets
 cp path/to/tsv-files/*.tsv path/to/root/datasets/
 ```
+And Empty schema added in src/main/resources/schema.sql to have the feature of working without any data. 
+So, you need to remove this file if you want to import real data.
+```shell
+rm path/to/root/src/main/resources/schema.sql
+```
 
 ### Choosing best import approach
 Based on [Stackoverflow](https://stackoverflow.com/questions/72505609/how-to-import-huge-tsv-file-into-h2-in-memory-database-with-spring-boot) and [H2 DB Documentation](https://www.h2database.com/html/functions.html#csvread),
