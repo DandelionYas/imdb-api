@@ -50,6 +50,28 @@ class ApiTests {
 	}
 
 	/**
+	 * Get two actors and return all the titles in which both of them played at
+	 */
+	@Test
+	void testGettingAllTheTitlesInWhichTwoSpecificActorsPlayedAt() {
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("http")
+				.host("localhost")
+				.port(port)
+				.path("/api/titles")
+				.queryParam("actor-1", "")
+				.queryParam("actor-2", "")
+				.queryParam("size", 10)
+				.queryParam("number", 0).build();
+
+		ResponseEntity<?> response = restTemplate.exchange(uri.toString(),
+				HttpMethod.GET, null, HelperPage.class);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+	}
+
+	/**
 	 * Count how many HTTP requests you received in this application
 	 * since the last startup
 	 */
