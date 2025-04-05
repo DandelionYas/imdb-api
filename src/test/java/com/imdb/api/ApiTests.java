@@ -72,6 +72,28 @@ class ApiTests {
 	}
 
 	/**
+	 * Get a genre from the user and return best titles on each year for that genre based on
+	 * number of votes and rating
+	 */
+	@Test
+	void testGettingBestTitlesOnEachYearByGenre() {
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("http")
+				.host("localhost")
+				.port(port)
+				.path("/api/titles/best-each-year")
+				.queryParam("genre", "")
+				.queryParam("size", 10)
+				.queryParam("number", 0).build();
+
+		ResponseEntity<?> response = restTemplate.exchange(uri.toString(),
+				HttpMethod.GET, null, HelperPage.class);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+	}
+
+	/**
 	 * Count how many HTTP requests you received in this application
 	 * since the last startup
 	 */
